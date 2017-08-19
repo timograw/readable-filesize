@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>readable-filesize demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../readable-filesize.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic readable-filesize (defaults to short metric byte units)</h3>
+      <demo-snippet>
+        <template>
+          <readable-filesize bytes="123"></readable-filesize><br />
+          <readable-filesize bytes="2255"></readable-filesize><br />
+          <readable-filesize bytes="3500000"></readable-filesize>
+        </template>
+      </demo-snippet>
+
+      <h3>Binary units (IEC units)</h3>
+      <p>See <a href="https://en.wikipedia.org/wiki/Binary_prefix">Wikipedia: Binary prefix</a> for more information.</p>
+      <demo-snippet>
+        <template>
+          <readable-filesize binary bytes="1024"></readable-filesize><br />
+          <readable-filesize binary bytes="5000000"></readable-filesize>
+        </template>
+      </demo-snippet>
+
+      <h3>Both units in long form</h3>
+      <demo-snippet>
+        <template>
+          <readable-filesize long bytes="123"></readable-filesize><br />
+          <readable-filesize long bytes="2255"></readable-filesize><br />
+          <readable-filesize long binary bytes="1024"></readable-filesize><br />
+          <readable-filesize long binary bytes="5000000"></readable-filesize>
+        </template>
+      </demo-snippet>
+
+      <h3>Bit units</h3>
+      <demo-snippet>
+        <template>
+          <readable-filesize bits bytes="2048"></readable-filesize><br />
+          <readable-filesize bits long bytes="2255"></readable-filesize><br />
+          <readable-filesize bits binary bytes="1024"></readable-filesize><br />
+          <readable-filesize bits long binary bytes="5000000"></readable-filesize>
+        </template>
+      </demo-snippet>
+
+      <h3>Basic readable-filesize demo</h3>
+      <demo-snippet>
+        <template>
+          <readable-filesize bytes="5.369e9" long></readable-filesize>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="readable-filesize">
+  <template>
+    <style>
+       :host {
+        display: inline;
+      }
+    </style>
+
+    <template is="dom-if" if="[[render]]">
+      [[readable]]
+    </template>
+
+  </template>
+
+  <script>
+    const BINARY = 'binary';
+    const METRIC = 'metric';
+
+    const prefixes = {
+      metric: {
+        short: ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'],
+        long: ['', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zetta', 'yotta']
+      },
+      binary: {
+        short: ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yi'],
+        long: ['', 'kibi', 'mebi', 'gibi', 'tebi', 'pebi', 'exbi', 'zebi', 'yobi']
+      }
+    }
+
+    const radices = {
+      metric: 1e3,
+      binary: 1024
+    }
+
+    /**
+     * `readable-filesize`
+     * Polymer 2 webcomponent to render readable filesizes
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ReadableFilesize extends Polymer.Element {
+      static get is() { return 'readable-filesize'; }
+      static get properties() {
+        return {
+          bytes: {
+            type: String,
+            observer: "_calculate"
+          },
+          render: {
+            type: Boolean,
+            value: true
+          },
+          readable: {
+            type: String
+          },
+          binary: {
+            type: Boolean,
+            value: false
+          },
+          bits: {
+            type: Boolean,
+            value: false
+          },
+          /*
+           * If true units will be written out in long form. Defaults to false.
+           */
+          long: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+
+      _getPrefixType() {
+        return (this.binary) ? BINARY : METRIC;
+      }
+
+      _getRadix() {
+        return radices[this._getPrefixType()];
+      }
+
+      _getLengthType() {
+        return (this.long) ? 'long' : 'short'
+      }
+
+      _getPrefix(i) {
+        return prefixes[this._getPrefixType()][this._getLengthType()][i];
+      }
+
+      _getSuffix(value) {
+        if (this.bits)
+          return (this.long)?'bit':'b';
+        return (this.long)?'byte':'B';
+      }
+
+      _round(value) {
+        if (value < 10)
+          return Math.round(value * 100) / 100;
+        else
+          return Math.round(value);
+      }
+
+      _calculate() {
+        let radix = this._getRadix();
+        let value = (this.bits) ? this.bytes*8 : this.bytes;
+
+        for (let i = 0; i < 9; i++) {
+          if (value < radix) {
+            this.readable = this._round(value) + ' ' + this._getPrefix(i) + this._getSuffix(value);
+            return;
+          }
+          value /= radix;
+        }
+      }
+
+
+    }
+
+    window.customElements.define(ReadableFilesize.is, ReadableFilesize);
+  </script>
+</dom-module>
