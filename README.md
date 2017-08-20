@@ -2,20 +2,28 @@
 
 Polymer 2 webcomponent to render readable filesizes
 
-## Install the Polymer-CLI
+## Installation
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
+run `bower install --save timograw/readable-filesize`
 
-## Viewing Your Element
+## Usage
 
-```
-$ polymer serve
-```
+import via `<link rel="import" href="bower_components/readable-filesize/readable-filesize.html">`
 
-## Running Tests
+and use like `<readable-filesize bytes="1024"></readable-filesize>`
 
-```
-$ polymer test
-```
+## Contributing
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+## History
+
+2017-08-20 - Initial release
+
+## License
+
+MIT
