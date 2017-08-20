@@ -1,23 +1,23 @@
 language: node_js
-sudo: required
 dist: trusty
-node_js: stable
+sudo: required
 addons:
-  firefox: latest
+  firefox: "latest"
   apt:
     sources:
-    - google-chrome
+      - google-chrome
     packages:
-    - google-chrome-beta
+      - google-chrome-stable
+node_js:
+  - "node"
+  - "6"
 cache:
   directories:
-  - node_modules
-before_script:
-- mkdir -p ~/bin
-- ln -s /usr/bin/google-chrome-beta ~/bin/google-chrome
-- export PATH=$HOME/bin:$PATH
-- npm install -g bower
-- npm install -g polymer-cli
-- bower install
+    - node_modules
+install:
+  - npm install -g polymer-cli
+  - npm install
+  - polymer install
 script:
-- polymer test
+  - xvfb-run npm run test
+  - xvfb-run npm run test:integration
