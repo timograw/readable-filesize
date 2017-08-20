@@ -3,14 +3,12 @@
 <dom-module id="readable-filesize">
   <template>
     <style>
-       :host {
+      :host {
         display: inline;
       }
     </style>
 
-    <template is="dom-if" if="[[render]]">
-      [[readable]]
-    </template>
+    [[readable]]
 
   </template>
 
@@ -93,8 +91,8 @@
 
       _getSuffix(value) {
         if (this.bits)
-          return (this.long)?'bit':'b';
-        return (this.long)?'byte':'B';
+          return (this.long) ? 'bit' : 'b';
+        return (this.long) ? 'byte' : 'B';
       }
 
       _round(value) {
@@ -106,7 +104,7 @@
 
       _calculate() {
         let radix = this._getRadix();
-        let value = (this.bits) ? this.bytes*8 : this.bytes;
+        let value = (this.bits) ? this.bytes * 8 : this.bytes;
 
         for (let i = 0; i < 9; i++) {
           if (value < radix) {

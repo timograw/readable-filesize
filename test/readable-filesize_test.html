@@ -15,34 +15,33 @@
 
     <test-fixture id="BasicTestFixture">
       <template>
-        <readable-filesize></readable-filesize>
+        <readable-filesize bytes="123"></readable-filesize>
       </template>
     </test-fixture>
 
-    <test-fixture id="ChangedPropertyTestFixture">
+    <test-fixture id="SimpleLongTextFixture">
       <template>
-        <readable-filesize prop1="new-prop1"></readable-filesize>
+        <readable-filesize long bytes="1000"></readable-filesize>
       </template>
     </test-fixture>
 
     <script>
+      function getContent(shadowRoot) {
+        return shadowRoot.childNodes[1].textContent.trim();
+      }
+
       suite('readable-filesize', function() {
 
-        test('instantiating the element with default properties works', function() {
-          var element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'readable-filesize');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello readable-filesize!');
+        test('instantiating the element with simple bytes property works', function() {
+          let element = fixture('BasicTestFixture');
+          let content = getContent(element.shadowRoot);
+          assert.equal(content, '123 B');
         });
 
         test('setting a property on the element works', function() {
-          // Create a test fixture
-          var element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+          let element = fixture('SimpleLongTextFixture');
+          let content = getContent(element.shadowRoot);
+          assert.equal(content, '1 kilobyte');
         });
 
       });
