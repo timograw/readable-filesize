@@ -6,12 +6,9 @@ Polymer 2 webcomponent to render readable filesizes
 ```
 <custom-element-demo>
   <template>
-<base href="https://raw-dot-custom-elements.appspot.com/timograw/readable-filesize/1ddfc5b378a176c9895ad3b6b3ee9f1c0f1f2a1c/readable-filesize/">
-<!-- START-HIDDEN-SECTION: Add imports and styling here. -->
-<script src="../webcomponentsjs/webcomponents-lite.js"></script>
-<link rel="import" href="readable-filesize.html">
-<!-- END-HIDDEN-SECTION: Add the visible part of the demo below. -->
-<readable-filesize binary bytes="1.471e11"></readable-filesize>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="readable-filesize.html">
+    <readable-filesize binary bytes="1.471e11"></readable-filesize>
   </template>
 </custom-element-demo>
 ```
