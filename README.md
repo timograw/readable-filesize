@@ -1,3 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/timograw/readable-filesize) [![Build Status](https://travis-ci.org/timograw/readable-filesize.svg?branch=master)](https://travis-ci.org/timograw/readable-filesize)
+
 # \<readable-filesize\>
 
 Polymer 2 webcomponent to render readable filesizes
