@@ -44,27 +44,44 @@
       static get is() { return 'readable-filesize'; }
       static get properties() {
         return {
+          /**
+           * Number of bytes used for calcuation.
+           * ** Required **
+           */
           bytes: {
-            type: String,
+            type: Number,
             observer: "_calculate"
           },
-          render: {
-            type: Boolean,
-            value: true
-          },
+          // render: {
+          //   type: Boolean,
+          //   value: true
+          // },
+          /**
+           * Output string that is rendered.
+           */
           readable: {
-            type: String
+            type: String,
+            notify: true
           },
+          /**
+           * If set use binary (IEC) units.
+           * Defaults to false.
+           */
           binary: {
             type: Boolean,
             value: false
           },
+          /**
+           * If set outputs bits instead of bytes.
+           * Defaults to false.
+           */
           bits: {
             type: Boolean,
             value: false
           },
           /*
-           * If true units will be written out in long form. Defaults to false.
+           * If set units will be written out in long form.
+           * Defaults to false.
            */
           long: {
             type: Boolean,
@@ -114,7 +131,6 @@
           value /= radix;
         }
       }
-
 
     }
 
